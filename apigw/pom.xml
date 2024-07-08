@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>fraud</artifactId>
+    <artifactId>apigw</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fraud</name>
-    <description>fraud</description>
+    <name>apigw</name>
+    <description>apigw</description>
     <url/>
     <licenses>
         <license/>
@@ -28,26 +28,17 @@
     </scm>
     <properties>
         <java.version>17</java.version>
+        <spring-cloud.version>2023.0.2</spring-cloud.version>
     </properties>
     <dependencies>
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-eureka-client</artifactId>
         </dependency>
     </dependencies>
 

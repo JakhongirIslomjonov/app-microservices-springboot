@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: apigw
+  cloud:
+    gateway:
+       routes:
+          - id: customer
+            uri: lb://CUSTOMER
+            predicates:
+              - Path=/api/customer/**
+
+
+server:
+  port: 8080
