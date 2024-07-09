@@ -17,9 +17,8 @@ public class NotificationController {
     private final NotificationService notificationService;
 
     @PostMapping
-    public HttpEntity<?> save(@RequestBody NotificationDTO notificationDTO){
-
-        return notificationService.register(notificationDTO);
+    public void save(@RequestBody NotificationDTO notificationDTO){
+      notificationService.register(notificationDTO);
     }
 
 }

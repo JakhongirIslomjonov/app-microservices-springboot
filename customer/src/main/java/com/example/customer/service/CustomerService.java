@@ -1,5 +1,6 @@
 package com.example.customer.service;
 
+import com.example.amqp.RabbitMQMessageProducer;
 import com.example.clients.fraud.FraudCheckResponse;
 import com.example.clients.fraud.FraudClient;
 import com.example.clients.notification.NotificationClient;
@@ -21,7 +22,8 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
     private final FraudClient fraudClient;
-    private final NotificationClient notificationClient;
+    private final RabbitMQMessageProducer producer;
+    //    private final NotificationClient notificationClient;
 
     public HttpEntity<?> register(CustomerDTO customerDTO) {
         Customer customer = customerMapper.toEntity(customerDTO);
@@ -34,10 +36,13 @@ public class CustomerService {
             throw new RuntimeException("real fraud :)");
 
         }
-        notificationClient.save(new NotificationDTO(
+        NotificationDTO dto = new NotificationDTO(
                 customer.getId(), " Everything is under my control"
-        ));
-
-        return ResponseEntity.status(201).body(customer);
+        );
+       /* notificationClient.save(new NotificationDTO(
+                customer.getId(), " Everything is under my control"
+        ));*/
+        producer.publish(dto,"myinternalexchange","secret-key");
+        return ResponseEntity.ok(customer);
     }
 }

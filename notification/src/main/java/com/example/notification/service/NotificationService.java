@@ -18,12 +18,10 @@ public class NotificationService {
     private final NotificationRepository notificationRepository;
     private final NotificationMapper notificationMapper;
 
-    public HttpEntity<?> register(NotificationDTO notificationDTO) {
+    public void register(NotificationDTO notificationDTO) {
         Notification notification = notificationMapper.toEntity(notificationDTO);
-
-
         notificationRepository.save(notification);
 
-        return ResponseEntity.ok(notification);
+
     }
 }
